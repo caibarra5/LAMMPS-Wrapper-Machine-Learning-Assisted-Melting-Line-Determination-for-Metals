@@ -1,0 +1,42 @@
+#--------------- Initialize Simulation --------------------
+units   metal
+atom_style      atomic
+boundary        p p p
+
+lattice fcc ${a}
+region  box block 0 11 0 11 0 11
+create_box      1 box
+create_atoms    1 box
+mass    1 63.546
+
+#--------------- Potential Used -----------------------
+pair_style      eam/alloy
+pair_coeff      * * Cu01.eam.alloy Cu
+
+# -------------- Minimize the Potential Energy ----------------
+#minimize        1.0e-8 1.0e-8 1000 100000
+#min_style       cg
+
+# ---------------- Initialize Equilibration Temperature and Temperature Needed -----------------------
+variable temp_equi equal ${temp}
+print "temp = ${temp}"
+variable temp_need equal 2*${temp}
+timestep ${dt}
+velocity all create ${temp_need} 454883 mom yes rot yes dist gaussian
+
+# --------------- Custom print to files to plot easier ------------------
+
+variable v1 equal "time"
+variable v2 equal "temp"
+variable v3 equal "press/10000"
+
+fix thermo_info all print ${k} "${v1} ${v2} ${v3}" file ${temp_equi}K_thermo_info_Cu.dat screen yes
+
+#----------------- Run Simulation -------------------
+
+restart ${n} from_${temp}_restart_from_last_run
+
+fix 1 all nve 
+run    ${n} 
+unfix 1
+unfix thermo_info

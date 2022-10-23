@@ -1,0 +1,35 @@
+#----------------- Define Variables ------------------
+variable temp_equi equal ${temp}
+variable dT equal ${temp}-${prev_temp}
+print "dT = ${dT}"
+variable temp_need equal ${prev_temp}+2*${dT}
+print "**********************equilibrated temperature = ${temp_equi} *******************"
+print "**********************temperature needed = ${temp_need} **********************"
+
+#--------------- Read from restart file -----------------------
+read_restart ${res}
+
+#--------------- Potential Used -----------------------
+pair_style      eam/alloy
+pair_coeff      * * Cu01.eam.alloy Cu
+
+# ---------------- Initialize Values -----------------------
+velocity all create ${temp_need} 454883 mom yes rot yes dist gaussian
+timestep ${dt}
+
+# --------------- Custom print to files to plot easier ------------------
+
+variable v1 equal "time"
+variable v2 equal "temp"
+variable v3 equal "press/10000"
+
+reset_timestep 0
+
+#----------------- Run Simulation -------------------
+fix thermo_info all print ${k} "${v1} ${v2} ${v3}" file ${temp_equi}K_thermo_info_Cu.dat screen yes
+
+restart ${n} from_${temp}_restart_from_last_run
+fix 1 all nve 
+run    ${n} 
+unfix 1
+unfix thermo_info
