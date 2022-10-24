@@ -1,5 +1,5 @@
 This program wrapper rquires lammps, preferrably named lmp and ran with
-4 processors.
+4 processors as can be seen in the main executable "0_main.bash"
 The files in.* can be modified to run different potentials for different
 metals.
 The neural network is not perfect and is meant only to assist in computing the
