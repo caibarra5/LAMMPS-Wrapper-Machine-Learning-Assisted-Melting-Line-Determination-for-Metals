@@ -1,0 +1,11 @@
+This program wrapper rquires lammps, preferrably named lmp and ran with
+4 processors.
+The files in.* can be modified to run different potentials for different
+metals.
+The neural network is not perfect and is meant only to assist in computing the
+P-V data points of the melting line to determine the melting line.
+The Simon-Glatzel equation P = T_{ref} * ((P - P_{ref})/a0 + 1)^a1 can be used
+to interpolate the data points using a software such as xmgrace.
+
+Run 0_main.bash. Can change temperature range one file zy* and lattice
+constants in file c0*.
