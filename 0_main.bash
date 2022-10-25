@@ -1,6 +1,6 @@
 rm log.lammps
 SECONDS=0
-
+ls > wy*
 #**********************Simulation Parameters*******************************
 steps_per_run=$(($((1 * $((10 ** 4)))) + $((5 * $((10 ** 3))))))
 steps_per_data_point=$(($steps_per_run / 200))
