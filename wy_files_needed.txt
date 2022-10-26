@@ -5,7 +5,6 @@ ca_lattice_constants.txt
 CNN_model.h5
 CNN_model.json
 cnn.py
-Cu01.eam.alloy
 da_compute_midpoint.c
 db_less_than_or_equal_to.c
 dc_difference_between_numbers.c
@@ -15,8 +14,8 @@ eb_less_than_or_equal_to.out
 ec_difference_between_numbers.out
 ed_multiply_two_floating_numbers.out
 fa_over_row_range_avg.bash
-in.melt_Cu.0
-in.melt_Cu.iterate.restart_input
+in.melt.0
+in.melt.iterate.restart_input
 wy_files_needed.txt
 wz_initial_range.txt
 xa_parameters_computed_for_xb.bash
