@@ -1,5 +1,5 @@
 echo " "
-for dir in 3.*/
+for dir in *timestep/
 do
   echo $dir
   cat ${dir}ab*
