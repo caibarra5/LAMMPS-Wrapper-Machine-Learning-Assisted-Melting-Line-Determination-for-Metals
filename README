@@ -7,5 +7,9 @@ P-V data points of the melting line to determine the melting line.
 The Simon-Glatzel equation P = T_{ref} * ((P - P_{ref})/a0 + 1)^a1 can be used
 to interpolate the data points using a software such as xmgrace.
 
-Run 0_main_args2:lammps_exe-num_procss.bash with two arguments: the lammps executable and the number of processors, in that order. One can change the temperature range on file zy* and lattice
+Run 0_main_args2:lammps_exe-num_procss.bash with two arguments: the lammps executable and the number of processors, in that order.
+Example:
+./0_main_args2:lammps_exe-num_procss.bash lmp 4
+
+One can change the temperature range on file zy* and lattice
 constants in file c0*.
